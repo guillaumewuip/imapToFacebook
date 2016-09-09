@@ -1,0 +1,19 @@
+{
+  "name": "imap-to-facebook",
+  "version": "0.0.1",
+  "description": "Send new emails to Facebook group",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/guillaumewuip/imapToFacebook.git"
+  },
+  "author": "Guillaume Wuip",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/guillaumewuip/imapToFacebook/issues"
+  },
+  "homepage": "https://github.com/guillaumewuip/imapToFacebook#README"
+}
