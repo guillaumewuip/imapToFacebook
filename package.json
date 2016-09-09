@@ -4,7 +4,8 @@
   "description": "Send new emails to Facebook group",
   "main": "index.js",
   "scripts": {
-    "test": "gulp dev"
+    "test": "gulp dev",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
