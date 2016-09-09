@@ -4,7 +4,7 @@
   "description": "Send new emails to Facebook group",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp dev"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/guillaumewuip/imapToFacebook/issues"
   },
-  "homepage": "https://github.com/guillaumewuip/imapToFacebook#README"
+  "homepage": "https://github.com/guillaumewuip/imapToFacebook#README",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "eslint-config-airbnb": "^11.0.0",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.1",
+    "eslint-plugin-react": "^6.2.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "mocha": "^3.0.2"
+  }
 }
