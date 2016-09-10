@@ -43,12 +43,6 @@ How are you today ?`;
                         expect(message.includes(data.text)).to.equal(true);
                         expect(message.includes(data.subject)).to.equal(true);
 
-                        const time = data.date.toLocaleTimeString('fr-FR');
-                        expect(message.includes(time)).to.equal(true);
-
-                        const date = data.date.toLocaleDateString('fr-FR');
-                        expect(message.includes(date)).to.equal(true);
-
                         done();
                     })
                     .catch(done);

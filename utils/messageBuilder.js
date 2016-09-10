@@ -1,9 +1,11 @@
 
-const util = require('util');
+const
+    util   = require('util'),
+    moment = require('moment');
+
+moment.locale('fr');
 
 const MAX_LENGTH = 63206;
-
-const LOCALE = 'fr-FR';
 
 const START_MESSAGES = [
     'Salut !\n',
@@ -95,9 +97,6 @@ const buildLongMessage = (text) => {
     return `${text.slice(-offset)}...`;
 };
 
-const buildDate = (date) => `${date.toLocaleDateString(LOCALE)} \
-${date.toLocaleTimeString(LOCALE)}`;
-
 const buildMessage = (mail) => (new Promise((resolve, reject) => {
     if (!mail.text) {
         reject(new Error('No content with mail'));
@@ -108,7 +107,7 @@ const buildMessage = (mail) => (new Promise((resolve, reject) => {
         ({ name, address }) => (name !== '' ? name : address)
     ).join(', ');
 
-    const date = mail.date ? buildDate(mail.date) : 'No date';
+    const date = mail.date ? moment(mail.date).fromNow() : 'No date';
 
     const msg = `\
 ${getRandom(START_MESSAGES)}\
