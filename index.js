@@ -33,10 +33,10 @@ const
     })();
 
 const inbox = imap({
-    USER:    IMAP_USER,
-    PASSORD: IMAP_PASSWORD,
-    SERVER:  IMAP_SERVER,
-    PORT:    IMAP_PORT,
+    USER:     IMAP_USER,
+    PASSWORD: IMAP_PASSWORD,
+    SERVER:   IMAP_SERVER,
+    PORT:     IMAP_PORT,
 });
 
 inbox.on('mail', (mail) => {
