@@ -23,8 +23,12 @@
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-react": "^6.2.0",
+    "fb": "^1.1.1",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
-    "mocha": "^3.0.2"
+    "inbox": "1.1.59",
+    "mailparser": "^0.6.1",
+    "mocha": "^3.0.2",
+    "stream-to-buffer": "^0.1.0"
   }
 }
