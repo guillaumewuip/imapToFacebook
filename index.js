@@ -86,11 +86,17 @@ ${parsedMail.subject}`);
                     .buildMessage(parsedMail)
                     .then(FB.postToGroup(FACEBOOK_GROUP))
                     .then(() => console.log('Mail send to Facebook'))
-                    .catch(console.error.bind(console));
+                    .catch((err) => {
+                        console.error(err);
+                        process.exit(1);
+                    });
             }
 
             return Promise.resolve();
         })
-        .catch(console.error.bind(console));
+        .catch((err) => {
+            console.error(err);
+            process.exit(1);
+        });
 });
 
