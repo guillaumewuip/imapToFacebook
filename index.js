@@ -40,6 +40,7 @@ const inbox = imap({
 });
 
 inbox.on('mail', (mail) => {
+    console.log(`New mail ${mail.uid}`);
     parser(mail)
         .then(console.log.bind(console))
         .catch(console.error.bind(console));

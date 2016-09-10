@@ -60,6 +60,15 @@ const imapListener = (imapInfos) => {
         }
     );
 
+    imap.on('connect', () => {
+        imap.openMailbox('INBOX', { readOnly: true }, (err) => {
+            if (err) {
+                console.error('Can\'t open INBOX', err);
+                process.exit(1);
+            }
+        });
+    });
+
     imap.on('new', (message) => readMail(imap, imapEmitter)(message.UID));
 
     imap.on('error', (err) => {
