@@ -1,5 +1,7 @@
 
-const imap = require('./services/imap');
+const
+    imap   = require('./services/imap'),
+    parser = require('./utils/parser');
 
 const
     IMAP_USER = (() => {
@@ -37,4 +39,8 @@ const inbox = imap({
     PORT:    IMAP_PORT,
 });
 
-inbox.on('new', console.log.bind(console));
+inbox.on('mail', (mail) => {
+    parser(mail)
+        .then(console.log.bind(console))
+        .catch(console.error.bind(console));
+});
