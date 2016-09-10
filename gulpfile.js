@@ -9,6 +9,8 @@ const inputPaths = {
         '.eslintrc.json',
         'gulpfile.js',
         'index.js',
+        'services/**/*.js',
+        'utils/**/*.js',
         'test/**/*.js',
     ],
 };
