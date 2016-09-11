@@ -34,6 +34,7 @@ describe('messageBuilder', () => {
 To: Receiver <receiver@example.com>
 Subject: Hello world!
 Date: Sat, 10 Sep 2016 08:28:39 +0200 (CEST)
+Content-Type: text/plain;charset=utf8
 
 How are you today ?`;
 
@@ -54,6 +55,7 @@ How are you today ?`;
         const email = `From: Sender <sender@example.com>
 To: Receiver <receiver@example.com>
 Subject: Hello world!
+Content-Type: text/plain;charset=utf8
 
 How are you today ?`;
 
@@ -71,6 +73,7 @@ How are you today ?`;
         const email = `From:  <sender@example.com>
 To: Receiver <receiver@example.com>
 Subject: Hello world!
+Content-Type: text/plain;charset=utf8
 
 How are you today ?`;
 
