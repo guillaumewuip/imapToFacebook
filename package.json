@@ -29,9 +29,11 @@
     "fb": "^1.1.1",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
+    "iconv-lite": "^0.4.13",
     "inbox": "1.1.59",
     "mailparser": "^0.6.1",
     "mocha": "^3.0.2",
+    "moment": "^2.14.1",
     "stream-to-buffer": "^0.1.0"
   }
 }

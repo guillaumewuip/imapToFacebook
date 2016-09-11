@@ -1,9 +1,15 @@
 
-const util = require('util');
+const
+    util   = require('util'),
+    moment = require('moment'),
+    iconv  = require('iconv-lite');
+
+// https://github.com/ashtuchkin/iconv-lite/wiki/Use-Buffers-when-decoding
+iconv.skipDecodeWarning = true; // seeems to work for us 👌
+
+moment.locale('fr');
 
 const MAX_LENGTH = 63206;
-
-const LOCALE = 'fr-FR';
 
 const START_MESSAGES = [
     'Salut !\n',
@@ -68,6 +74,23 @@ const getRandom = (list) => {
     return list[index];
 };
 
+const getText = (mail) => {
+    if (!mail.headers['content-type']) {
+        return mail.text;
+    }
+
+    const charset = mail.headers['content-type']
+        .split(';')
+        .filter((t) => t.startsWith('charset'))
+        .map((t) => t.replace('charset=', ''));
+
+    if (charset.length > 0) {
+        return iconv.decode(mail.text, charset).toString();
+    }
+
+    return mail.text;
+};
+
 const padText = (prefix, text) => {
     const lines = text.split('\n');
     let l = lines.length;
@@ -95,9 +118,6 @@ const buildLongMessage = (text) => {
     return `${text.slice(-offset)}...`;
 };
 
-const buildDate = (date) => `${date.toLocaleDateString(LOCALE)} \
-${date.toLocaleTimeString(LOCALE)}`;
-
 const buildMessage = (mail) => (new Promise((resolve, reject) => {
     if (!mail.text) {
         reject(new Error('No content with mail'));
@@ -108,14 +128,14 @@ const buildMessage = (mail) => (new Promise((resolve, reject) => {
         ({ name, address }) => (name !== '' ? name : address)
     ).join(', ');
 
-    const date = mail.date ? buildDate(mail.date) : 'No date';
+    const date = mail.date ? moment(mail.date).fromNow() : 'No date';
 
     const msg = `\
 ${getRandom(START_MESSAGES)}\
 ${util.format(getRandom(SENDER_MESSAGES), from)}\
 ${util.format(getRandom(SUBJECT_MESSAGES), mail.subject)}
 ${getRandom(CONTENT_MESSAGES)}
-${padText('> ', mail.text)}
+${padText('> ', getText(mail))}
 
 ${getRandom(END_MESSAGES)}
 

@@ -22,7 +22,7 @@ const parseMail = (mailToParse) => {
         mailparser.on('error', reject);
 
         // send the email source to the parser
-        mailparser.write(mailToParse.buffer.toString());
+        mailparser.write(mailToParse.buffer);
         mailparser.end();
     });
 };

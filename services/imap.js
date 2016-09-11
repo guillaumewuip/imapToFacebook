@@ -37,8 +37,6 @@ const parseMail = function (imap, uid) {
 const readMail = (imap, imapEmitter) => (uid) => {
     parseMail(imap, uid)
         .then((mail) => {
-            console.log(`New mail ${mail.uid}`);
-            console.log(mail);
             imapEmitter.emit('mail', mail);
         })
         .catch((err) => {
