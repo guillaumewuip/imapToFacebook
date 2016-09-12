@@ -27,13 +27,16 @@
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-react": "^6.2.0",
     "fb": "^1.1.1",
+    "fetch-mock": "^5.1.2",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "iconv-lite": "^0.4.13",
     "inbox": "1.1.59",
+    "isomorphic-fetch": "^2.2.1",
     "mailparser": "^0.6.1",
     "mocha": "^3.0.2",
     "moment": "^2.14.1",
+    "request": "^2.74.0",
     "stream-to-buffer": "^0.1.0"
   }
 }

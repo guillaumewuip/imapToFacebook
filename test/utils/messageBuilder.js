@@ -40,9 +40,9 @@ How are you today ?`;
 
                 parser({ uid: 1, buffer: Buffer.from(email) })
                     .then(messageBuilder.buildMessage)
-                    .then((message) => {
-                        expect(message.includes(data.text)).to.equal(true);
-                        expect(message.includes(data.subject)).to.equal(true);
+                    .then(({ text }) => {
+                        expect(text).to.be.a('string');
+                        expect(text.includes(data.subject)).to.equal(true);
 
                         done();
                     })
@@ -61,9 +61,9 @@ How are you today ?`;
 
         parser({ uid: 1, buffer: Buffer.from(email) })
             .then(messageBuilder.buildMessage)
-            .then((message) => {
-                expect(message.includes('Sender')).to.equal(true);
-                expect(message.includes('sender@example.com')).to.equal(false);
+            .then(({ text }) => {
+                expect(text.includes('Sender')).to.equal(true);
+                expect(text.includes('sender@example.com')).to.equal(false);
                 done();
             })
             .catch(done);
@@ -79,8 +79,8 @@ How are you today ?`;
 
         parser({ uid: 1, buffer: Buffer.from(email) })
             .then(messageBuilder.buildMessage)
-            .then((message) => {
-                expect(message.includes('sender@example.com')).to.equal(true);
+            .then(({ text }) => {
+                expect(text.includes('sender@example.com')).to.equal(true);
                 done();
             })
             .catch(done);

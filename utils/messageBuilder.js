@@ -139,13 +139,18 @@ ${padText('> ', getText(mail))}
 
 ${getRandom(END_MESSAGES)}
 
-${date} - http://webmail-etu.univ-nantes.fr
+${date} http://webmail-etu.univ-nantes.fr
 `;
 
+
     if (msg <= MAX_LENGTH) {
-        resolve(buildLongMessage(`${mail.from[0].address}: ${mail.text}`));
+        resolve({
+            text: buildLongMessage(`${mail.from[0].address}: ${mail.text}`),
+        });
     } else {
-        resolve(msg);
+        resolve({
+            text: msg,
+        });
     }
 }));
 
