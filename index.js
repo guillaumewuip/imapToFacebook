@@ -2,7 +2,7 @@
 const
     imap            = require('./services/imap'),
     parser          = require('./utils/parser'),
-    facebook        = require('./services/facebook'),
+    bufferAPI       = require('./services/buffer'),
     messageBuilder  = require('./utils/messageBuilder'),
     mailFilter      = require('./utils/mailFilter');
 
@@ -35,18 +35,18 @@ const
         return process.IMAP_PORT;
     })(),
 
-    FACEBOOK_ACCESS_TOKEN = (() => {
-        if (!process.env.FACEBOOK_ACCESS_TOKEN) {
-            throw new Error('Need FACEBOOK_ACCESS_TOKEN');
+    BUFFER_ACCESS_TOKEN = (() => {
+        if (!process.env.BUFFER_ACCESS_TOKEN) {
+            throw new Error('Need BUFFER_ACCESS_TOKEN');
         }
-        return process.env.FACEBOOK_ACCESS_TOKEN;
+        return process.env.BUFFER_ACCESS_TOKEN;
     })(),
 
-    FACEBOOK_GROUP = (() => {
-        if (!process.env.FACEBOOK_GROUP) {
-            throw new Error('Need FACEBOOK_GROUP');
+    BUFFER_PROFILE = (() => {
+        if (!process.env.BUFFER_PROFILE) {
+            throw new Error('Need BUFFER_PROFILE');
         }
-        return process.env.FACEBOOK_GROUP;
+        return process.env.BUFFER_PROFILE;
     })(),
 
     /*
@@ -69,7 +69,7 @@ const inbox = imap({
     PORT:     IMAP_PORT,
 });
 
-const FB = facebook(FACEBOOK_ACCESS_TOKEN);
+const buffer = bufferAPI(BUFFER_ACCESS_TOKEN);
 
 const mustBeSend = mailFilter(DEST_MAILS);
 
@@ -81,11 +81,10 @@ inbox.on('mail', (mail) => {
 ${parsedMail.subject}`);
 
             if (mustBeSend(parsedMail)) {
-                console.log('Building mail & sending to Facebook');
+                console.log('Building mail & sending to Buffer');
                 return messageBuilder
                     .buildMessage(parsedMail)
-                    .then(FB.postToGroup(FACEBOOK_GROUP))
-                    .then(() => console.log('Mail send to Facebook'))
+                    .then(buffer.post(BUFFER_PROFILE))
                     .catch((err) => {
                         console.error(err);
                         process.exit(1);
@@ -99,4 +98,3 @@ ${parsedMail.subject}`);
             process.exit(1);
         });
 });
-
