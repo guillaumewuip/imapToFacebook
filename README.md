@@ -11,12 +11,18 @@ Need these environment variables :
 IMAP_SERVER
 IMAP_USER
 IMAP_PASSWORD
-FACEBOOK_ACCESS_TOKEN
-FACEBOOK_GROUP
-DEST_MAILS
+BUFFER_ACCESS_TOKEN
+BUFFER_PROFILE
+DEST_MAILS          # comma-separated list of emails to allow in the TO: field
 ```
 
 ```
 npm install
-heroku local
+heroku local # start
+```
+
+# Dev
+
+```
+gulp # run eslint and tests on change
 ```
